@@ -18,6 +18,7 @@ video_param = {
 text_param = {
     "type": "text",
     "text": "Describe the person's emotional or mental state or changes therein."
+#    "text": "Describe the person's emotional or mental state or changes therein.  Give a percentage confidence if you are not sure."
 }
 
 
@@ -55,7 +56,7 @@ if __name__ == "__main__":
     ap = ArgumentParser("This program loads Qwen3-VL to analyze emotions in a video.")
     ap.add_argument("-i", "--input", type=str)
     ap.add_argument("--model", type=str, default="Qwen/Qwen3-VL-2B-Instruct")
-    ap.add_argument("--prompt", type=str, default="Describe the person's emotional or mental state or changes therein.")
+    ap.add_argument("--prompt", type=str, default="Describe the person's emotional or mental state or changes therein. Give a percentage confidence if you are not sure.")
     ap.add_argument("--config", type=str, default="")
     ap.add_argument("-o", "--out_path", type=str, default="out.txt")
     args = ap.parse_args()
@@ -64,9 +65,9 @@ if __name__ == "__main__":
     processor = AutoProcessor.from_pretrained(args.model)
     model = AutoModelForImageTextToText.from_pretrained(
         args.model, dtype=bfloat16, 
-#        attn_implementation="flash_attention_2", 
+#        attn_implementation="flash_attention_2",
         device_map="auto")
-    
+
     print("Model loaded in", int(time()-t), "seconds");  t = time()
 
     text_param["text"] = args.prompt

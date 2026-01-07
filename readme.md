@@ -1,11 +1,20 @@
 
 This repo contains code and instructions to analyze the emotional/mental state of a person in a short video clip using Qwen3-VL.
 
-1. Python 3.12 is recommended
-2. Install dependencies using the requirements.txt (custom pytorch installation may be necessary if your environment uses an older CUDA version)
-3. Run `python inference.py -i video.mp4 `
+1. Python 3.12 is tested to work.
+2. Install [pytorch](https://pytorch.org/get-started/locally) according to your system/CUDA version.
+3. `pip install requirements.txt`
+4. Optional: install flash attention (possibly non-trivial)  
+    Potentially helpful Github [discussion](https://github.com/Dao-AILab/flash-attention/issues/1708#issuecomment-2987038903).
+5. `python inference.py -i video.mp4`
 
+If you have a long video, you can call the following script to split it into short clips to simulate streaming.  
+`python preprocessing.py -i video.mp4`  
+`python inference.py -i video_split/`
 
+The program will print to screen and save to a file its analysis.  
+
+---
 
 ### VRAM Requirements
 
