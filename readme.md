@@ -4,13 +4,15 @@ This repo contains code and instructions to analyze the emotional/mental state o
 1. Python 3.12 is tested to work.
 2. Install [pytorch](https://pytorch.org/get-started/locally) according to your system/CUDA version.
 3. `pip install requirements.txt`
-4. Optional: install flash attention (possibly non-trivial)  
-    Potentially helpful Github [discussion](https://github.com/Dao-AILab/flash-attention/issues/1708#issuecomment-2987038903).
-5. `python inference.py -i video.mp4`
+4. Optional: install flash attention (possibly [non-trivial](https://github.com/Dao-AILab/flash-attention/issues/1708#issuecomment-2987038903)).
+5. `python inference.py -i video.mp4`  
+   Uncomment this [line](https://github.com/gaudiy/nonverbal_cue_analysis/blob/master/inference.py#L65) if your system is able to use flash attention.
+
 
 If you have a long video, you can call the following script to split it into short clips to simulate streaming.  
-`python preprocessing.py -i video.mp4`  
-`python inference.py -i video_split/`
+`python preprocessing.py -i video.mp4`  (expects a long video, i.e., 60+ seconds)   
+`python inference.py -i video_split/`  
+
 
 The program will print to screen and save to a file its analysis.  
 
@@ -32,7 +34,7 @@ Depending on the video and hyperparameters, an additional 5-30GB VRAM may be nec
 
 <summary> Preprocessing </summary>
 
-## ffmpeg
+### ffmpeg
 
 **Crop**  
 `ffmpeg -i file -vf "crop=w:h:x:y out.mp4`  
