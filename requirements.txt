@@ -1,5 +1,5 @@
-torch
-torchvision
+# torch
+# torchvision
 transformers>=4.57.0
 # flash-attn-2.7.4.post1
 qwen-vl-utils[decord]==0.0.14
