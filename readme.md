@@ -42,4 +42,10 @@ w,h -> crop size
 **Preview**  
 `ffplay -i file -vf "crop=w:h:x:y"`
 
+**Extract frames**  
+`ffmpeg -i input.mp4 %04d.png`  
+`ffmpeg -ss 00:00:04 -t 2 -i input.mp4 %04d.png`  
+-ss specifies start in seconds  
+-t specifies duration
+
 </details>
